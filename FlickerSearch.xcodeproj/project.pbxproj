@@ -12,6 +12,11 @@
 		D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5D2274046D00E65FFB /* BaseService.swift */; };
 		D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6022740EF400E65FFB /* NetworkManager.swift */; };
 		D76E4B632274208C00E65FFB /* FlickerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B622274208C00E65FFB /* FlickerSearchService.swift */; };
+		D76E4B6522743F8800E65FFB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6422743F8800E65FFB /* SearchViewModel.swift */; };
+		D76E4B6B22744D7A00E65FFB /* SearchPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */; };
+		D76E4B6C22744D7A00E65FFB /* SearchPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */; };
+		D76E4B6E2274588D00E65FFB /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */; };
+		D76E4B702274713F00E65FFB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6F2274713F00E65FFB /* Helper.swift */; };
 		D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */; };
 		D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1712273F8B300C7EF25 /* Main.storyboard */; };
 		D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
@@ -35,6 +40,11 @@
 		D76E4B5D2274046D00E65FFB /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		D76E4B6022740EF400E65FFB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D76E4B622274208C00E65FFB /* FlickerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchService.swift; sourceTree = "<group>"; };
+		D76E4B6422743F8800E65FFB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoCell.swift; sourceTree = "<group>"; };
+		D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPhotoCell.xib; sourceTree = "<group>"; };
+		D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		D76E4B6F2274713F00E65FFB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D7C4E16A2273F8B300C7EF25 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C4E1722273F8B300C7EF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,17 +85,19 @@
 		D76E4B512274005500E65FFB /* SearchFlicker */ = {
 			isa = PBXGroup;
 			children = (
-				D76E4B522274005500E65FFB /* Model */,
+				D76E4B6622744CAE00E65FFB /* Views */,
+				D76E4B522274005500E65FFB /* ViewModel */,
 				D76E4B532274005500E65FFB /* ViewController */,
 			);
 			path = SearchFlicker;
 			sourceTree = "<group>";
 		};
-		D76E4B522274005500E65FFB /* Model */ = {
+		D76E4B522274005500E65FFB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D76E4B6422743F8800E65FFB /* SearchViewModel.swift */,
 			);
-			path = Model;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D76E4B532274005500E65FFB /* ViewController */ = {
@@ -109,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				D76E4B5A227401F100E65FFB /* Constant.swift */,
+				D76E4B6F2274713F00E65FFB /* Helper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -142,9 +155,19 @@
 			isa = PBXGroup;
 			children = (
 				D76E4B6022740EF400E65FFB /* NetworkManager.swift */,
+				D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */,
 			);
 			name = Manager;
 			path = Services/Manager;
+			sourceTree = "<group>";
+		};
+		D76E4B6622744CAE00E65FFB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */,
+				D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D7C4E1612273F8B300C7EF25 = {
@@ -270,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76E4B6C22744D7A00E65FFB /* SearchPhotoCell.xib in Resources */,
 				D7C4E1782273F8B500C7EF25 /* LaunchScreen.storyboard in Resources */,
 				D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */,
 				D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */,
@@ -290,10 +314,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76E4B6B22744D7A00E65FFB /* SearchPhotoCell.swift in Sources */,
 				D76E4B632274208C00E65FFB /* FlickerSearchService.swift in Sources */,
+				D76E4B6522743F8800E65FFB /* SearchViewModel.swift in Sources */,
 				D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */,
 				D76E4B552274005500E65FFB /* SearchViewController.swift in Sources */,
 				D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */,
+				D76E4B6E2274588D00E65FFB /* ImageDownloadManager.swift in Sources */,
+				D76E4B702274713F00E65FFB /* Helper.swift in Sources */,
 				D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */,
 				D76E4B5B227401F100E65FFB /* Constant.swift in Sources */,
 			);

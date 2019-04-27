@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct FLICKR {
     static let apikey = "3e7cc266ae2b0e0d78e279ce8e361736" //API_KEY_FLICKR"
@@ -21,3 +22,14 @@ struct FLICKR {
 }
 
 
+struct ImageDownloaderConfig {
+    static let maxConnectionPerHost = 8
+    static let maxObjectsToHold = 400
+    static let MB = 1024*1024
+    static let cacheSize = 200 * ImageDownloaderConfig.MB
+}
+
+struct SearchScreenConfig {
+    static let noOfItemsHorizontally: CGFloat = 3
+    static let interItemSpacing: CGFloat = 10
+}

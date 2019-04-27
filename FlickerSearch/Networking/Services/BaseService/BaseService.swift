@@ -121,13 +121,15 @@ class GetBaseService<Request: GetRequestDTOProtocol, Response: Decodable>: BaseS
     
     fileprivate var request : URLRequest?
 
-    func getRequest(requestDto :Request , responseDto:Response.Type , completion:@escaping(Result<Response>)->Void) {
+    func getRequest(requestDto :Request , responseDto:Response.Type , completion:@escaping(Result<Response>)->Void) -> URLSessionTask {
             let manager =  NetworkManager.shared
             let url = makeUrl(url: requestDto.url, queryParmaters: requestDto.queryParameter.dictionary)
-            self.request = manager.responseGet(url) { (data, httpUrlResponse, error) in
+            let sessionTask = manager.responseGet(url) { (data, httpUrlResponse, error) in
             self.decodeResponse(data: data, response: httpUrlResponse as? HTTPURLResponse, error: error,responseDto:responseDto, completion: completion)
             print("request **** \(String(describing: self.request)) ****\n\n")
-            }.originalRequest
+            }
+        self.request = sessionTask.originalRequest
+        return sessionTask
 
     }
     private func makeUrl(url:String , queryParmaters : [String : Any]?) -> String {

@@ -18,10 +18,10 @@ class PhotoList: Decodable {
     let pages: Int
     let perpage: Int
     let total: String
-    let photo: [Photo]
+    var photo: [Photo]
 }
 
-class Photo: Decodable {
+class Photo: PhotoResultProtocol, Decodable {
     let farm: Int
     let server: String
     let secret: String
@@ -37,8 +37,10 @@ class FlickerSearchRequestParameters: Encodable{
     let safeSearch: Int
     let text: String
     let method: String
+    let page: Int
     
     init(searchString _text: String,
+                     _page: Int,
                      _apiKey: String = FLICKR.apikey,
                      _format: String = FLICKR.QueryParams.format,
                      _noJsonCallBack: Int = FLICKR.QueryParams.noJsonCallBack,
@@ -51,6 +53,7 @@ class FlickerSearchRequestParameters: Encodable{
         safeSearch = _safeSearch
         text = _text
         method = _method
+        page = _page
     }
     
     enum CodingKeys: String, CodingKey {
@@ -60,6 +63,8 @@ class FlickerSearchRequestParameters: Encodable{
         case safeSearch = "safe_search"
         case text
         case method
+        case page
+        
     }
     
 }
