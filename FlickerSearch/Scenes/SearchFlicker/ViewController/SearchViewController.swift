@@ -14,6 +14,18 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let params = FlickerSearchRequestParameters(searchString: "kitten")
+        let getRequest = GetRequestDTO(queryParameter: params, url: FLICKR.baseUrl)
+        let service = FlickerSearchService()
+        service.getRequest(requestDto: getRequest, responseDto: SearchResponseDTO.self) { result in
+            
+            switch result {
+            case .Success(let responseDTO):
+                print(responseDTO)
+            case .Failure(let error):
+                print("error \(error)")
+            }
+        }
     }
     
 

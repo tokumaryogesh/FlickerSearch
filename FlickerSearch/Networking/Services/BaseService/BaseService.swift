@@ -34,7 +34,7 @@ protocol ContainsUrl {
 
 protocol GetRequestDTOProtocol: ContainsUrl {
     associatedtype Parameters: Encodable
-    var queryParams: Parameters? {get set}
+    var queryParameter: Parameters? {get set}
 }
 
 enum Result<T> {
@@ -48,6 +48,17 @@ extension Encodable {
     }
     var dictionary: [String: Any] {
         return (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
+    }
+}
+
+struct GetRequestDTO <QueryParameter : Encodable> : GetRequestDTOProtocol {
+    var queryParameter: QueryParameter?
+    var url: String
+}
+extension GetRequestDTO {
+    init(url: String, queryParameter: QueryParameter) {
+        self.url = url
+        self.queryParameter = queryParameter
     }
 }
 
@@ -112,7 +123,7 @@ class GetBaseService<Request: GetRequestDTOProtocol, Response: Decodable>: BaseS
 
     func getRequest(requestDto :Request , responseDto:Response.Type , completion:@escaping(Result<Response>)->Void) {
             let manager =  NetworkManager.shared
-            let url = makeUrl(url: requestDto.url, queryParmaters: requestDto.queryParams.dictionary)
+            let url = makeUrl(url: requestDto.url, queryParmaters: requestDto.queryParameter.dictionary)
             self.request = manager.responseGet(url) { (data, httpUrlResponse, error) in
             self.decodeResponse(data: data, response: httpUrlResponse as? HTTPURLResponse, error: error,responseDto:responseDto, completion: completion)
             print("request **** \(String(describing: self.request)) ****\n\n")

@@ -11,6 +11,7 @@
 		D76E4B5B227401F100E65FFB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5A227401F100E65FFB /* Constant.swift */; };
 		D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5D2274046D00E65FFB /* BaseService.swift */; };
 		D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6022740EF400E65FFB /* NetworkManager.swift */; };
+		D76E4B632274208C00E65FFB /* FlickerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B622274208C00E65FFB /* FlickerSearchService.swift */; };
 		D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */; };
 		D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1712273F8B300C7EF25 /* Main.storyboard */; };
 		D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		D76E4B5A227401F100E65FFB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D76E4B5D2274046D00E65FFB /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		D76E4B6022740EF400E65FFB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D76E4B622274208C00E65FFB /* FlickerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchService.swift; sourceTree = "<group>"; };
 		D7C4E16A2273F8B300C7EF25 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C4E1722273F8B300C7EF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		D76E4B59227401AE00E65FFB /* FlickerSearch */ = {
 			isa = PBXGroup;
 			children = (
+				D76E4B622274208C00E65FFB /* FlickerSearchService.swift */,
 			);
 			path = FlickerSearch;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D76E4B632274208C00E65FFB /* FlickerSearchService.swift in Sources */,
 				D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */,
 				D76E4B552274005500E65FFB /* SearchViewController.swift in Sources */,
 				D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */,

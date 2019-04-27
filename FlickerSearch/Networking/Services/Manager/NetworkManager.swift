@@ -35,7 +35,7 @@ class NetworkManager {
         
         let url = URL(string: url)!
         let sessionTask = urlSession.dataTask(with: url) { (data, response, error) in
-            //completionHandler(data, response, error)
+            completionHandler(data, response, error)
         }
         sessionTask.resume()
         
