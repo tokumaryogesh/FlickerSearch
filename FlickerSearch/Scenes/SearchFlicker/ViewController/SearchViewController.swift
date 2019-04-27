@@ -12,6 +12,11 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    var messageAlertView: AlertMessgaeView = {
+        let messageView = AlertMessgaeView.loadNib() as! AlertMessgaeView
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        return messageView
+    }()
     
     let viewModel = SearchViewModel()
     
@@ -26,6 +31,23 @@ class SearchViewController: UIViewController {
         
         collectionView.register(UINib(nibName: SearchPhotoCell.className, bundle: nil), forCellWithReuseIdentifier: SearchPhotoCell.className)
         collectionView.prefetchDataSource = self
+        self.view.addSubview(messageAlertView)
+        
+        let subViews: [String: Any] = ["SB": searchBar!, "MV": messageAlertView]
+        let vConstaint = NSLayoutConstraint.constraints(withVisualFormat: "V:[SB]-0-[MV]-0-|", metrics: nil, views: subViews)
+        let hConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[MV]-0-|", metrics: nil, views: subViews)
+        NSLayoutConstraint.activate( vConstaint + hConstraint)
+        messageAlertView.isHidden = true
+        
+        viewModel.modelDidGetUpdated = { [weak self] error in
+            if let error = error {
+                self?.messageAlertView.isHidden = false
+                self?.messageAlertView.updateViewWith(imageName: "icon_wentwrong", message: error.localizedDescription)
+                return
+            }
+            self?.messageAlertView.isHidden = true
+            self?.collectionView.reloadData()
+        }
     }
 
 }
@@ -39,7 +61,7 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchPhotoCell", for: indexPath) as? SearchPhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCell.className, for: indexPath) as? SearchPhotoCell
         if let data = viewModel.dataSource?.photos.photo[indexPath.row] {
             cell?.updateCellWithInfo(data)
         }
@@ -66,15 +88,13 @@ extension SearchViewController : UICollectionViewDataSourcePrefetching {
         if let list = viewModel.dataSource?.photos, list.page < list.pages {
             let indexPath = IndexPath(item: list.photo.count-1, section: 0)
             if indexPaths.contains(indexPath) {
-                viewModel.getSearchForText(searchBar.text ?? "", page: list.page + 1) { [weak self] in
-                    self?.collectionView.reloadData()
-                }
+                viewModel.getSearchForText(searchBar.text ?? "", page: list.page + 1)
             }
         }
     }
 }
 
-// MARK:- UICollectionView ItemSize
+// MARK:- UICollectionView layout delegates for ItemSize
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     
@@ -97,12 +117,7 @@ extension SearchViewController: UISearchBarDelegate {
         if let text = searchBar.text, text.count > 0  {
             searchBar.resignFirstResponder()
             viewModel.resetSearch()
-            collectionView.reloadData()
-            viewModel.getSearchForText(text) { [weak self] in
-                // Data download completed
-                
-                self?.collectionView.reloadData()
-            }
+            viewModel.getSearchForText(text)
         }
     }
 }

@@ -15,8 +15,9 @@ class SearchViewModel {
     private var lastSessionTask: URLSessionTask?
     private var pretechingPage: Int = -1
     
+    var modelDidGetUpdated: ((ServiceError?)->Void)?
     
-    func getSearchForText(_ text: String, page: Int = 1, completion: @escaping () -> Void) {
+    func getSearchForText(_ text: String, page: Int = 1) {
         
         if pretechingPage == page {
             // Prefetch Loading In Progress
@@ -36,6 +37,7 @@ class SearchViewModel {
         let service = FlickerSearchService()
         lastSessionTask = service.getRequest(requestDto: getRequest, responseDto: SearchResponseDTO.self) { [weak self] result in
             
+            var serviceError: ServiceError?
             switch result {
             case .Success(let responseDTO):
                 print(responseDTO)
@@ -50,9 +52,10 @@ class SearchViewModel {
                 }
             case .Failure(let error):
                 print("error \(error)")
+                serviceError = error
             }
             DispatchQueue.main.async {
-                completion()
+                self?.modelDidGetUpdated?(serviceError)
             }
             self?.pretechingPage = -1
         }
@@ -62,5 +65,6 @@ class SearchViewModel {
     func resetSearch() {
         pretechingPage = -1
         dataSource = nil
+        modelDidGetUpdated?(nil)
     }
 }

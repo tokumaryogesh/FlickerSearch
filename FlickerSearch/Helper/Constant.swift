@@ -24,7 +24,7 @@ struct FLICKR {
 
 struct ImageDownloaderConfig {
     static let maxConnectionPerHost = 8
-    static let maxObjectsToHold = 400
+    static let maxObjectsToHold = 1000
     static let MB = 1024*1024
     static let cacheSize = 200 * ImageDownloaderConfig.MB
 }

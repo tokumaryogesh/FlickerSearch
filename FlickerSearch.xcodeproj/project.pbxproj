@@ -17,6 +17,8 @@
 		D76E4B6C22744D7A00E65FFB /* SearchPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */; };
 		D76E4B6E2274588D00E65FFB /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */; };
 		D76E4B702274713F00E65FFB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6F2274713F00E65FFB /* Helper.swift */; };
+		D76E4B7322749ECB00E65FFB /* AlertMessgaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */; };
+		D76E4B7522749EE000E65FFB /* AlertMessgaeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */; };
 		D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */; };
 		D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1712273F8B300C7EF25 /* Main.storyboard */; };
 		D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPhotoCell.xib; sourceTree = "<group>"; };
 		D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		D76E4B6F2274713F00E65FFB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessgaeView.swift; sourceTree = "<group>"; };
+		D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertMessgaeView.xib; sourceTree = "<group>"; };
 		D7C4E16A2273F8B300C7EF25 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C4E1722273F8B300C7EF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 		D76E4B572274007400E65FFB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D76E4B7122749E9B00E65FFB /* MessageView */,
 				D76E4B5A227401F100E65FFB /* Constant.swift */,
 				D76E4B6F2274713F00E65FFB /* Helper.swift */,
 			);
@@ -168,6 +173,15 @@
 				D76E4B6A22744D7A00E65FFB /* SearchPhotoCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D76E4B7122749E9B00E65FFB /* MessageView */ = {
+			isa = PBXGroup;
+			children = (
+				D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */,
+				D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */,
+			);
+			path = MessageView;
 			sourceTree = "<group>";
 		};
 		D7C4E1612273F8B300C7EF25 = {
@@ -297,6 +311,7 @@
 				D7C4E1782273F8B500C7EF25 /* LaunchScreen.storyboard in Resources */,
 				D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */,
 				D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */,
+				D76E4B7522749EE000E65FFB /* AlertMessgaeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +336,7 @@
 				D76E4B552274005500E65FFB /* SearchViewController.swift in Sources */,
 				D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */,
 				D76E4B6E2274588D00E65FFB /* ImageDownloadManager.swift in Sources */,
+				D76E4B7322749ECB00E65FFB /* AlertMessgaeView.swift in Sources */,
 				D76E4B702274713F00E65FFB /* Helper.swift in Sources */,
 				D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */,
 				D76E4B5B227401F100E65FFB /* Constant.swift in Sources */,
