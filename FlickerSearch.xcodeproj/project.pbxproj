@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7654C752275E07500F158D4 /* DataLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7654C742275E07500F158D4 /* DataLoaderTest.swift */; };
+		D7654C762275E4AB00F158D4 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6022740EF400E65FFB /* DataLoader.swift */; };
+		D7654C782276940B00F158D4 /* SearchViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7654C772276940B00F158D4 /* SearchViewModelTest.swift */; };
+		D7654C792276941C00F158D4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6422743F8800E65FFB /* SearchViewModel.swift */; };
+		D7654C7A2276942600F158D4 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5D2274046D00E65FFB /* BaseService.swift */; };
+		D7654C7B2276942D00F158D4 /* FlickerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B622274208C00E65FFB /* FlickerSearchService.swift */; };
+		D7654C7C22769AC700F158D4 /* SearchPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */; };
+		D7654C7D22769ACE00F158D4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5A227401F100E65FFB /* Constant.swift */; };
+		D7654C8022769B4C00F158D4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B542274005500E65FFB /* SearchViewController.swift */; };
 		D76E4B552274005500E65FFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B542274005500E65FFB /* SearchViewController.swift */; };
 		D76E4B5B227401F100E65FFB /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5A227401F100E65FFB /* Constant.swift */; };
 		D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B5D2274046D00E65FFB /* BaseService.swift */; };
-		D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6022740EF400E65FFB /* NetworkManager.swift */; };
+		D76E4B6122740EF400E65FFB /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6022740EF400E65FFB /* DataLoader.swift */; };
 		D76E4B632274208C00E65FFB /* FlickerSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B622274208C00E65FFB /* FlickerSearchService.swift */; };
 		D76E4B6522743F8800E65FFB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6422743F8800E65FFB /* SearchViewModel.swift */; };
 		D76E4B6B22744D7A00E65FFB /* SearchPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */; };
@@ -19,6 +28,11 @@
 		D76E4B702274713F00E65FFB /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6F2274713F00E65FFB /* Helper.swift */; };
 		D76E4B7322749ECB00E65FFB /* AlertMessgaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */; };
 		D76E4B7522749EE000E65FFB /* AlertMessgaeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */; };
+		D7B8489122769D680050D97F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6F2274713F00E65FFB /* Helper.swift */; };
+		D7B8489222769D9E0050D97F /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */; };
+		D7B8489322769DA80050D97F /* AlertMessgaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */; };
+		D7B848952276A1720050D97F /* SearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D7B848942276A1720050D97F /* SearchResult.json */; };
+		D7B848962276A3A50050D97F /* SearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D7B848942276A1720050D97F /* SearchResult.json */; };
 		D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */; };
 		D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1712273F8B300C7EF25 /* Main.storyboard */; };
 		D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
@@ -37,10 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D7654C742275E07500F158D4 /* DataLoaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoaderTest.swift; sourceTree = "<group>"; };
+		D7654C772276940B00F158D4 /* SearchViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTest.swift; sourceTree = "<group>"; };
 		D76E4B542274005500E65FFB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D76E4B5A227401F100E65FFB /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D76E4B5D2274046D00E65FFB /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
-		D76E4B6022740EF400E65FFB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D76E4B6022740EF400E65FFB /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		D76E4B622274208C00E65FFB /* FlickerSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchService.swift; sourceTree = "<group>"; };
 		D76E4B6422743F8800E65FFB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D76E4B6922744D7A00E65FFB /* SearchPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoCell.swift; sourceTree = "<group>"; };
@@ -49,6 +65,7 @@
 		D76E4B6F2274713F00E65FFB /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessgaeView.swift; sourceTree = "<group>"; };
 		D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertMessgaeView.xib; sourceTree = "<group>"; };
+		D7B848942276A1720050D97F /* SearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SearchResult.json; sourceTree = "<group>"; };
 		D7C4E16A2273F8B300C7EF25 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C4E1722273F8B300C7EF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -159,7 +176,7 @@
 		D76E4B5F22740EDF00E65FFB /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D76E4B6022740EF400E65FFB /* NetworkManager.swift */,
+				D76E4B6022740EF400E65FFB /* DataLoader.swift */,
 				D76E4B6D2274588D00E65FFB /* ImageDownloadManager.swift */,
 			);
 			name = Manager;
@@ -212,6 +229,7 @@
 				D7C4E1712273F8B300C7EF25 /* Main.storyboard */,
 				D7C4E1742273F8B500C7EF25 /* Assets.xcassets */,
 				D7C4E1762273F8B500C7EF25 /* LaunchScreen.storyboard */,
+				D7B848942276A1720050D97F /* SearchResult.json */,
 				D7C4E1792273F8B500C7EF25 /* Info.plist */,
 			);
 			path = FlickerSearch;
@@ -221,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				D7C4E1822273F8B500C7EF25 /* FlickerSearchTests.swift */,
+				D7654C742275E07500F158D4 /* DataLoaderTest.swift */,
+				D7654C772276940B00F158D4 /* SearchViewModelTest.swift */,
 				D7C4E1842273F8B500C7EF25 /* Info.plist */,
 			);
 			path = FlickerSearchTests;
@@ -307,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B848962276A3A50050D97F /* SearchResult.json in Resources */,
 				D76E4B6C22744D7A00E65FFB /* SearchPhotoCell.xib in Resources */,
 				D7C4E1782273F8B500C7EF25 /* LaunchScreen.storyboard in Resources */,
 				D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */,
@@ -319,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B848952276A1720050D97F /* SearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +356,7 @@
 				D76E4B6522743F8800E65FFB /* SearchViewModel.swift in Sources */,
 				D76E4B5E2274046D00E65FFB /* BaseService.swift in Sources */,
 				D76E4B552274005500E65FFB /* SearchViewController.swift in Sources */,
-				D76E4B6122740EF400E65FFB /* NetworkManager.swift in Sources */,
+				D76E4B6122740EF400E65FFB /* DataLoader.swift in Sources */,
 				D76E4B6E2274588D00E65FFB /* ImageDownloadManager.swift in Sources */,
 				D76E4B7322749ECB00E65FFB /* AlertMessgaeView.swift in Sources */,
 				D76E4B702274713F00E65FFB /* Helper.swift in Sources */,
@@ -347,7 +369,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B8489122769D680050D97F /* Helper.swift in Sources */,
+				D7654C8022769B4C00F158D4 /* SearchViewController.swift in Sources */,
+				D7B8489322769DA80050D97F /* AlertMessgaeView.swift in Sources */,
+				D7654C7C22769AC700F158D4 /* SearchPhotoCell.swift in Sources */,
+				D7B8489222769D9E0050D97F /* ImageDownloadManager.swift in Sources */,
+				D7654C752275E07500F158D4 /* DataLoaderTest.swift in Sources */,
+				D7654C7D22769ACE00F158D4 /* Constant.swift in Sources */,
+				D7654C792276941C00F158D4 /* SearchViewModel.swift in Sources */,
+				D7654C7A2276942600F158D4 /* BaseService.swift in Sources */,
+				D7654C7B2276942D00F158D4 /* FlickerSearchService.swift in Sources */,
 				D7C4E1832273F8B500C7EF25 /* FlickerSearchTests.swift in Sources */,
+				D7654C782276940B00F158D4 /* SearchViewModelTest.swift in Sources */,
+				D7654C762275E4AB00F158D4 /* DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +536,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9F8V7NK624;
 				INFOPLIST_FILE = FlickerSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,7 +555,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9F8V7NK624;
 				INFOPLIST_FILE = FlickerSearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

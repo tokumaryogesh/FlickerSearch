@@ -17,6 +17,12 @@ protocol PhotoResultProtocol {
     
 }
 
+extension PhotoResultProtocol {
+    func urlForPhoto() -> String {
+        return "http://farm" + String(self.farm) + ".static.flickr.com/" + self.server + "/" + self.id + "_" + self.secret + ".jpg"
+    }
+}
+
 
 class SearchPhotoCell: UICollectionViewCell, ClassName {
 
@@ -33,7 +39,7 @@ class SearchPhotoCell: UICollectionViewCell, ClassName {
         
         data = info
         self.photoImageView.image = UIImage.init(named: "placeholder_cover")
-        let urlString = createUrlFromData(data: info)
+        let urlString = info.urlForPhoto()
         if let url = URL(string: urlString) {
             self.photoUrl = url
             ImageDownloadManager.shared.downloadImageWithUrl(url, completionHandler: { [weak self]  (image, url, error) in
@@ -43,10 +49,6 @@ class SearchPhotoCell: UICollectionViewCell, ClassName {
             })
         }
         
-    }
-    
-    func createUrlFromData(data: PhotoResultProtocol) -> String {
-        return "http://farm" + String(data.farm) + ".static.flickr.com/" + data.server + "/" + data.id + "_" + data.secret + ".jpg"
     }
 
 }

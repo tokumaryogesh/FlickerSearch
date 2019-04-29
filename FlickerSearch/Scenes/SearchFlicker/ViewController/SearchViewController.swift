@@ -19,12 +19,18 @@ class SearchViewController: UIViewController {
     }()
     
     let viewModel = SearchViewModel()
+    let progressIndicatorView = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         prepareview()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        progressIndicatorView.isHidden = true
     }
     
     private func prepareview() {
@@ -40,14 +46,24 @@ class SearchViewController: UIViewController {
         messageAlertView.isHidden = true
         
         viewModel.modelDidGetUpdated = { [weak self] error in
-            if let error = error {
+            self?.progressIndicatorView.isHidden = true
+            let dataSourceCount = self?.viewModel.dataSource?.photos.photo.count ?? 0
+            if let error = error, dataSourceCount == 0 {
                 self?.messageAlertView.isHidden = false
                 self?.messageAlertView.updateViewWith(imageName: "icon_wentwrong", message: error.localizedDescription)
                 return
             }
             self?.messageAlertView.isHidden = true
             self?.collectionView.reloadData()
+            if let count = self?.viewModel.dataSource?.photos.photo.count, count == 0 {
+                self?.messageAlertView.isHidden = false
+                self?.messageAlertView.updateViewWith(imageName: "icon_wentwrong", message: DisplayMessagea.noResultFound)
+            }
         }
+        
+        self.view.addSubview(progressIndicatorView)
+        progressIndicatorView.startAnimating()
+        progressIndicatorView.center = view.center
     }
 
 }
@@ -70,6 +86,22 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.searchBar.resignFirstResponder()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let photos = viewModel.dataSource?.photos.photo, photos.count > indexPath.row {
+            if let url = URL(string: photos[indexPath.row].urlForPhoto()) {
+                ImageDownloadManager.shared.updatePriority(.high, forURL: url)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let photos = viewModel.dataSource?.photos.photo, photos.count > indexPath.row {
+            if let url = URL(string: photos[indexPath.row].urlForPhoto()) {
+                ImageDownloadManager.shared.updatePriority(.low, forURL: url)
+            }
+        }
     }
 }
 
@@ -118,6 +150,8 @@ extension SearchViewController: UISearchBarDelegate {
             searchBar.resignFirstResponder()
             viewModel.resetSearch()
             viewModel.getSearchForText(text)
+            progressIndicatorView.isHidden = false
+            messageAlertView.isHidden = true
         }
     }
 }

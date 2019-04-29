@@ -22,52 +22,63 @@ class ImageDownloadManager {
     static let shared = ImageDownloadManager()
     
     private let cache = NSCache<NSString, UIImage>()
-    private var imageSownloadTask = [String: URLSessionTask]()
+    private var imageDownloadTask = [String: Operation]()
+    let imageOperationQueue = OperationQueue()
+
     
     private init() {
         
         cache.countLimit = ImageDownloaderConfig.maxObjectsToHold
         cache.totalCostLimit = ImageDownloaderConfig.cacheSize
+        imageOperationQueue.maxConcurrentOperationCount = ImageDownloaderConfig.maxConnectionPerHost
+
         
     }
-    private var urlSession: URLSession = {
-        var configuration = URLSessionConfiguration.default
-        configuration.httpMaximumConnectionsPerHost = 8
-        let session = URLSession(configuration: configuration)
-        return session
-    }()
     
-    func downloadImageWithUrl(_ url: URL, priority: DownloadPriority = .medium, completionHandler: @escaping(UIImage?,URL,Error?) -> Void) {
+    func downloadImageWithUrl(_ url: URL, priority: Operation.QueuePriority = .normal, completionHandler: @escaping(UIImage?,URL,Error?) -> Void) {
         
         let urlString = url.absoluteString as NSString
-       
+    
         if let image = cache.object(forKey: urlString) {
             // Image exist in cache, return
-            completionHandler(image, url, nil)
+            DispatchQueue.main.async {
+                 completionHandler(image, url, nil)
+            }
             return
         }
         
-        if let _ = imageSownloadTask[url.absoluteString] {
+        if let _ = imageDownloadTask[url.absoluteString] {
             // Task is in progress
             return
         }
         
-        let sessionTask = urlSession.dataTask(with: url) { [weak self] data, response, error in
-            self?.imageSownloadTask.removeValue(forKey: url.absoluteString)
-            if let error = error {
-                completionHandler(nil, url, error)
-            }
-            if let data = data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    completionHandler(image, url, nil)
+        let operation = BlockOperation(block: { [weak self] in
+            do {
+                
+                let data = try Data(contentsOf: url)
+                if let image = UIImage(data: data) {
+                    self?.imageDownloadTask.removeValue(forKey: url.absoluteString)
+                    self?.cache.setObject(image, forKey: url.absoluteString as NSString)
+                    
+                    DispatchQueue.main.async {
+                       completionHandler(image, url, nil)
+                    }
                 }
-                self?.cache.setObject(image, forKey: urlString)
+            } catch {
+                self?.imageDownloadTask.removeValue(forKey: url.absoluteString)
             }
-        }
-        sessionTask.priority = priority.rawValue
-        imageSownloadTask[url.absoluteString] = sessionTask
-        sessionTask.resume()
+        })
         
+        operation.queuePriority = priority
+        imageOperationQueue.addOperation(operation)
+        imageDownloadTask[url.absoluteString] = operation
+        
+    }
+    
+    func updatePriority(_ priority: Operation.QueuePriority, forURL url: URL) {
+        if let operation = imageDownloadTask[url.absoluteString] {
+            operation.queuePriority = priority
+        }
     }
 
 }

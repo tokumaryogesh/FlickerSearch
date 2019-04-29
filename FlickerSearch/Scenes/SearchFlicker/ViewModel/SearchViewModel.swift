@@ -17,7 +17,7 @@ class SearchViewModel {
     
     var modelDidGetUpdated: ((ServiceError?)->Void)?
     
-    func getSearchForText(_ text: String, page: Int = 1) {
+    func getSearchForText(_ text: String, page: Int = 1, service: FlickerSearchService = FlickerSearchService()) {
         
         if pretechingPage == page {
             // Prefetch Loading In Progress
@@ -34,7 +34,6 @@ class SearchViewModel {
         
         let params = FlickerSearchRequestParameters(searchString: text, _page: page)
         let getRequest = GetRequestDTO(queryParameter: params, url: FLICKR.baseUrl)
-        let service = FlickerSearchService()
         lastSessionTask = service.getRequest(requestDto: getRequest, responseDto: SearchResponseDTO.self) { [weak self] result in
             
             var serviceError: ServiceError?

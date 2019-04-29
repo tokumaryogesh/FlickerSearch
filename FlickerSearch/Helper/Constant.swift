@@ -33,3 +33,7 @@ struct SearchScreenConfig {
     static let noOfItemsHorizontally: CGFloat = 3
     static let interItemSpacing: CGFloat = 10
 }
+
+struct DisplayMessagea {
+    static let noResultFound = "No Result Found"
+}
