@@ -36,7 +36,7 @@ class DataLoaderTest: XCTestCase {
         
         var rData: Data?
         var rError: Error?
-        let _ = loader.responseGet("hi") { (data, response, error) in
+        let _ = loader.responseGet("") { (data, response, error) in
            rData = data
            rError = error
         }

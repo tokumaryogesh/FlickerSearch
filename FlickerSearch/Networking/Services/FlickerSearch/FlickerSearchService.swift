@@ -10,7 +10,16 @@ import Foundation
 
 class SearchResponseDTO: Decodable {
     
-    var photos: PhotoList
+    var photoList: PhotoList
+    
+    enum Codingkeys: String, CodingKey {
+        case photoList = "photos"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Codingkeys.self)
+        photoList = try container.decode(PhotoList.self, forKey: .photoList)
+    }
 }
 
 class PhotoList: Decodable {
@@ -39,21 +48,21 @@ class FlickerSearchRequestParameters: Encodable{
     let method: String
     let page: Int
     
-    init(searchString _text: String,
-                     _page: Int,
-                     _apiKey: String = FLICKR.apikey,
-                     _format: String = FLICKR.QueryParams.format,
-                     _noJsonCallBack: Int = FLICKR.QueryParams.noJsonCallBack,
-                     _safeSearch: Int = FLICKR.QueryParams.safeSearch,
-                     _method: String = FLICKR.QueryParams.method) {
+    init(searchString text: String,
+                     page: Int,
+                     apiKey: String = FLICKR.apikey,
+                     format: String = FLICKR.QueryParams.format,
+                     noJsonCallBack: Int = FLICKR.QueryParams.noJsonCallBack,
+                     safeSearch: Int = FLICKR.QueryParams.safeSearch,
+                     method: String = FLICKR.QueryParams.method) {
         
-        apiKey = _apiKey
-        format = _format
-        noJsonCallBack = _noJsonCallBack
-        safeSearch = _safeSearch
-        text = _text
-        method = _method
-        page = _page
+        self.apiKey = apiKey
+        self.format = format
+        self.noJsonCallBack = noJsonCallBack
+        self.safeSearch = safeSearch
+        self.text = text
+        self.method = method
+        self.page = page
     }
     
     enum CodingKeys: String, CodingKey {

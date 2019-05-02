@@ -33,6 +33,9 @@
 		D7B8489322769DA80050D97F /* AlertMessgaeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */; };
 		D7B848952276A1720050D97F /* SearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D7B848942276A1720050D97F /* SearchResult.json */; };
 		D7B848962276A3A50050D97F /* SearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = D7B848942276A1720050D97F /* SearchResult.json */; };
+		D7C0039922793681000060FC /* FlickerSearchServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C0039822793681000060FC /* FlickerSearchServiceTest.swift */; };
+		D7C0039B22797735000060FC /* ImageDownloadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C0039A22797735000060FC /* ImageDownloadTest.swift */; };
+		D7C0039C22798D16000060FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
 		D7C4E16E2273F8B300C7EF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */; };
 		D7C4E1732273F8B300C7EF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1712273F8B300C7EF25 /* Main.storyboard */; };
 		D7C4E1752273F8B500C7EF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C4E1742273F8B500C7EF25 /* Assets.xcassets */; };
@@ -66,6 +69,8 @@
 		D76E4B7222749ECB00E65FFB /* AlertMessgaeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessgaeView.swift; sourceTree = "<group>"; };
 		D76E4B7422749EE000E65FFB /* AlertMessgaeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertMessgaeView.xib; sourceTree = "<group>"; };
 		D7B848942276A1720050D97F /* SearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SearchResult.json; sourceTree = "<group>"; };
+		D7C0039822793681000060FC /* FlickerSearchServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerSearchServiceTest.swift; sourceTree = "<group>"; };
+		D7C0039A22797735000060FC /* ImageDownloadTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadTest.swift; sourceTree = "<group>"; };
 		D7C4E16A2273F8B300C7EF25 /* FlickerSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C4E16D2273F8B300C7EF25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C4E1722273F8B300C7EF25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -241,6 +246,8 @@
 				D7C4E1822273F8B500C7EF25 /* FlickerSearchTests.swift */,
 				D7654C742275E07500F158D4 /* DataLoaderTest.swift */,
 				D7654C772276940B00F158D4 /* SearchViewModelTest.swift */,
+				D7C0039822793681000060FC /* FlickerSearchServiceTest.swift */,
+				D7C0039A22797735000060FC /* ImageDownloadTest.swift */,
 				D7C4E1842273F8B500C7EF25 /* Info.plist */,
 			);
 			path = FlickerSearchTests;
@@ -340,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C0039C22798D16000060FC /* Assets.xcassets in Resources */,
 				D7B848952276A1720050D97F /* SearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,9 +382,11 @@
 				D7B8489322769DA80050D97F /* AlertMessgaeView.swift in Sources */,
 				D7654C7C22769AC700F158D4 /* SearchPhotoCell.swift in Sources */,
 				D7B8489222769D9E0050D97F /* ImageDownloadManager.swift in Sources */,
+				D7C0039B22797735000060FC /* ImageDownloadTest.swift in Sources */,
 				D7654C752275E07500F158D4 /* DataLoaderTest.swift in Sources */,
 				D7654C7D22769ACE00F158D4 /* Constant.swift in Sources */,
 				D7654C792276941C00F158D4 /* SearchViewModel.swift in Sources */,
+				D7C0039922793681000060FC /* FlickerSearchServiceTest.swift in Sources */,
 				D7654C7A2276942600F158D4 /* BaseService.swift in Sources */,
 				D7654C7B2276942D00F158D4 /* FlickerSearchService.swift in Sources */,
 				D7C4E1832273F8B500C7EF25 /* FlickerSearchTests.swift in Sources */,

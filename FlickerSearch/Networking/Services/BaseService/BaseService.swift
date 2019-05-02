@@ -119,20 +119,17 @@ extension BaseService {
 
 class GetBaseService<Request: GetRequestDTOProtocol, Response: Decodable>: BaseService<Response> {
     
-    fileprivate var request : URLRequest?
 
-    func getRequest(requestDto :Request , responseDto:Response.Type , completion:@escaping(Result<Response>)->Void) -> URLSessionTask {
-            let manager =  DataLoader()
+    func getRequest(requestDto :Request , responseDto:Response.Type , manager: DataLoader = DataLoader(), completion:@escaping(Result<Response>)->Void) -> URLSessionTask {
             let url = makeUrl(url: requestDto.url, queryParmaters: requestDto.queryParameter.dictionary)
             let sessionTask = manager.responseGet(url) { (data, httpUrlResponse, error) in
             self.decodeResponse(data: data, response: httpUrlResponse as? HTTPURLResponse, error: error,responseDto:responseDto, completion: completion)
-            print("request **** \(String(describing: self.request)) ****\n\n")
             }
-        self.request = sessionTask.originalRequest
         return sessionTask
 
     }
-    private func makeUrl(url:String , queryParmaters : [String : Any]?) -> String {
+    
+    func makeUrl(url:String , queryParmaters : [String : Any]?) -> String {
         if let query = queryParmaters , query.count > 0{
             var queryItems = [URLQueryItem]()
             for (key , value) in query {

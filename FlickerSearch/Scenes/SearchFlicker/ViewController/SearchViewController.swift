@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
         
         viewModel.modelDidGetUpdated = { [weak self] error in
             self?.progressIndicatorView.isHidden = true
-            let dataSourceCount = self?.viewModel.dataSource?.photos.photo.count ?? 0
+            let dataSourceCount = self?.viewModel.dataSource?.photoList.photo.count ?? 0
             if let error = error, dataSourceCount == 0 {
                 self?.messageAlertView.isHidden = false
                 self?.messageAlertView.updateViewWith(imageName: "icon_wentwrong", message: error.localizedDescription)
@@ -55,7 +55,7 @@ class SearchViewController: UIViewController {
             }
             self?.messageAlertView.isHidden = true
             self?.collectionView.reloadData()
-            if let count = self?.viewModel.dataSource?.photos.photo.count, count == 0 {
+            if let count = self?.viewModel.dataSource?.photoList.photo.count, count == 0 {
                 self?.messageAlertView.isHidden = false
                 self?.messageAlertView.updateViewWith(imageName: "icon_wentwrong", message: DisplayMessagea.noResultFound)
             }
@@ -73,12 +73,12 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDataSource {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.dataSource?.photos.photo.count ?? 0
+        return viewModel.dataSource?.photoList.photo.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchPhotoCell.className, for: indexPath) as? SearchPhotoCell
-        if let data = viewModel.dataSource?.photos.photo[indexPath.row] {
+        if let data = viewModel.dataSource?.photoList.photo[indexPath.row] {
             cell?.updateCellWithInfo(data)
         }
         return cell!
@@ -89,7 +89,7 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let photos = viewModel.dataSource?.photos.photo, photos.count > indexPath.row {
+        if let photos = viewModel.dataSource?.photoList.photo, photos.count > indexPath.row {
             if let url = URL(string: photos[indexPath.row].urlForPhoto()) {
                 ImageDownloadManager.shared.updatePriority(.high, forURL: url)
             }
@@ -97,7 +97,7 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let photos = viewModel.dataSource?.photos.photo, photos.count > indexPath.row {
+        if let photos = viewModel.dataSource?.photoList.photo, photos.count > indexPath.row {
             if let url = URL(string: photos[indexPath.row].urlForPhoto()) {
                 ImageDownloadManager.shared.updatePriority(.low, forURL: url)
             }
@@ -117,7 +117,7 @@ extension SearchViewController : UICollectionViewDataSourcePrefetching {
     }
     
     private func checkPrefetchingRequired(_ indexPaths: [IndexPath]) {
-        if let list = viewModel.dataSource?.photos, list.page < list.pages {
+        if let list = viewModel.dataSource?.photoList, list.page < list.pages {
             let indexPath = IndexPath(item: list.photo.count-1, section: 0)
             if indexPaths.contains(indexPath) {
                 viewModel.getSearchForText(searchBar.text ?? "", page: list.page + 1)

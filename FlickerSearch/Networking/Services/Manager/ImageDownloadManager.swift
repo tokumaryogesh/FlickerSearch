@@ -16,6 +16,20 @@ enum DownloadPriority: Float {
     case high = 1.0
 }
 
+protocol ImageFetchProtocol {
+    func imageFromUrl(_ url: URL) -> UIImage?
+}
+
+class ImageFetcher: ImageFetchProtocol {
+    func imageFromUrl(_ url: URL) -> UIImage? {
+        if let data = try? Data(contentsOf: url) {
+            if let image = UIImage(data: data) {
+                return image
+            }
+        }
+        return nil
+    }
+}
 
 class ImageDownloadManager {
     
@@ -31,11 +45,10 @@ class ImageDownloadManager {
         cache.countLimit = ImageDownloaderConfig.maxObjectsToHold
         cache.totalCostLimit = ImageDownloaderConfig.cacheSize
         imageOperationQueue.maxConcurrentOperationCount = ImageDownloaderConfig.maxConnectionPerHost
-
         
     }
     
-    func downloadImageWithUrl(_ url: URL, priority: Operation.QueuePriority = .normal, completionHandler: @escaping(UIImage?,URL,Error?) -> Void) {
+    func downloadImageWithUrl(_ url: URL, priority: Operation.QueuePriority = .normal, fetcher: ImageFetchProtocol = ImageFetcher() ,completionHandler: @escaping(UIImage?,URL,ServiceError?) -> Void) {
         
         let urlString = url.absoluteString as NSString
     
@@ -53,19 +66,16 @@ class ImageDownloadManager {
         }
         
         let operation = BlockOperation(block: { [weak self] in
-            do {
-                
-                let data = try Data(contentsOf: url)
-                if let image = UIImage(data: data) {
+                if let image = fetcher.imageFromUrl(url){
                     self?.imageDownloadTask.removeValue(forKey: url.absoluteString)
                     self?.cache.setObject(image, forKey: url.absoluteString as NSString)
                     
                     DispatchQueue.main.async {
                        completionHandler(image, url, nil)
                     }
-                }
-            } catch {
-                self?.imageDownloadTask.removeValue(forKey: url.absoluteString)
+                } else {
+                    self?.imageDownloadTask.removeValue(forKey: url.absoluteString)
+                    completionHandler(nil, url, ServiceError.responseUnsuccessful)
             }
         })
         

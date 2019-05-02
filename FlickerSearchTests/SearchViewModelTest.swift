@@ -22,7 +22,7 @@ class SearchViewModelTest: XCTestCase {
         
         class FlickerSearchServiceMocker: FlickerSearchService {
             
-            override func getRequest(requestDto: GetRequestDTO<FlickerSearchRequestParameters>, responseDto: SearchResponseDTO.Type, completion: @escaping (Result<SearchResponseDTO>) -> Void) -> URLSessionTask {
+            override func getRequest(requestDto: GetRequestDTO<FlickerSearchRequestParameters>, responseDto: SearchResponseDTO.Type, manager: DataLoader, completion: @escaping (Result<SearchResponseDTO>) -> Void) -> URLSessionTask {
                 
                  completion(Result.Failure(.invalidData))
                 return URLSessionDataTask()
@@ -46,7 +46,7 @@ class SearchViewModelTest: XCTestCase {
         
         class FlickerSearchServiceMocker: FlickerSearchService {
             
-            override func getRequest(requestDto: GetRequestDTO<FlickerSearchRequestParameters>, responseDto: SearchResponseDTO.Type, completion: @escaping (Result<SearchResponseDTO>) -> Void) -> URLSessionTask {
+            override func getRequest(requestDto: GetRequestDTO<FlickerSearchRequestParameters>, responseDto: SearchResponseDTO.Type, manager: DataLoader, completion: @escaping (Result<SearchResponseDTO>) -> Void) -> URLSessionTask {
                 
                 if let path = Bundle.main.path(forResource: "SearchResult", ofType: "json")
                 {
@@ -66,8 +66,8 @@ class SearchViewModelTest: XCTestCase {
         viewModel.getSearchForText("test", page: 2, service: FlickerSearchServiceMocker())
         
         XCTAssertNotNil(viewModel.dataSource)
-        XCTAssertEqual(viewModel.dataSource?.photos.photo.count, 99)
-        XCTAssertEqual(viewModel.dataSource?.photos.perpage, 100)
+        XCTAssertEqual(viewModel.dataSource?.photoList.photo.count, 99)
+        XCTAssertEqual(viewModel.dataSource?.photoList.perpage, 100)
 
     }
         

@@ -11,7 +11,17 @@ import Foundation
 
 class SearchViewModel {
     
-    var dataSource: SearchResponseDTO?
+    var dataSource: SearchResponseDTO? {
+        didSet {
+            if let data = dataSource?.photoList.photo {
+                photos = data
+            } else {
+                photos = [Photo]()
+            }
+        }
+    }
+    
+    var photos = [Photo]()
     private var lastSessionTask: URLSessionTask?
     private var pretechingPage: Int = -1
     
@@ -32,7 +42,7 @@ class SearchViewModel {
             lastSessionTask.cancel()
         }
         
-        let params = FlickerSearchRequestParameters(searchString: text, _page: page)
+        let params = FlickerSearchRequestParameters(searchString: text, page: page)
         let getRequest = GetRequestDTO(queryParameter: params, url: FLICKR.baseUrl)
         lastSessionTask = service.getRequest(requestDto: getRequest, responseDto: SearchResponseDTO.self) { [weak self] result in
             
@@ -40,12 +50,12 @@ class SearchViewModel {
             switch result {
             case .Success(let responseDTO):
                 print(responseDTO)
-                if responseDTO.photos.page == 1 {
+                if responseDTO.photoList.page == 1 {
                     self?.dataSource = responseDTO
                 } else {
-                    if var photos = self?.dataSource?.photos.photo {
-                        photos += responseDTO.photos.photo
-                        responseDTO.photos.photo = photos
+                    if var photos = self?.dataSource?.photoList.photo {
+                        photos += responseDTO.photoList.photo
+                        responseDTO.photoList.photo = photos
                     }
                     self?.dataSource = responseDTO
                 }

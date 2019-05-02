@@ -21,5 +21,3 @@ Messaging: In case of error or Api failure user is shown the message on searchvi
 
 TradeOffs:
 * Disk caching needs to be done, currently in memory caching is done.
-* Unit Testing is done for some classes not all due to time constraints.
-
