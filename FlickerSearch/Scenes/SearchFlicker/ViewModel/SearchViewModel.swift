@@ -11,9 +11,9 @@ import Foundation
 
 class SearchViewModel {
     
-    var dataSource: SearchResponseDTO? {
+    private var response: SearchResponseDTO? {
         didSet {
-            if let data = dataSource?.photoList.photo {
+            if let data = response?.photoList.photo {
                 photos = data
             } else {
                 photos = [Photo]()
@@ -51,13 +51,13 @@ class SearchViewModel {
             case .Success(let responseDTO):
                 print(responseDTO)
                 if responseDTO.photoList.page == 1 {
-                    self?.dataSource = responseDTO
+                    self?.response = responseDTO
                 } else {
-                    if var photos = self?.dataSource?.photoList.photo {
+                    if var photos = self?.response?.photoList.photo {
                         photos += responseDTO.photoList.photo
                         responseDTO.photoList.photo = photos
                     }
-                    self?.dataSource = responseDTO
+                    self?.response = responseDTO
                 }
             case .Failure(let error):
                 print("error \(error)")
@@ -73,7 +73,23 @@ class SearchViewModel {
     
     func resetSearch() {
         pretechingPage = -1
-        dataSource = nil
+        response = nil
         modelDidGetUpdated?(nil)
+    }
+    
+    func isNextPageAvailable() -> Bool {
+        if let response = self.response {
+            if response.photoList.page < response.photoList.pages {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func currentPage() -> Int {
+        if let response = self.response {
+            return response.photoList.page
+        }
+        return 1
     }
 }

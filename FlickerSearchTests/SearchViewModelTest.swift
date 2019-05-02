@@ -65,10 +65,7 @@ class SearchViewModelTest: XCTestCase {
 
         viewModel.getSearchForText("test", page: 2, service: FlickerSearchServiceMocker())
         
-        XCTAssertNotNil(viewModel.dataSource)
-        XCTAssertEqual(viewModel.dataSource?.photoList.photo.count, 99)
-        XCTAssertEqual(viewModel.dataSource?.photoList.perpage, 100)
-
+        XCTAssertEqual(viewModel.photos.count, 99)
     }
         
     
